@@ -5,10 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-contact = Contact.new(first_name: "Amanda", last_name: "Smith", email: "amandasemail@gmail.com", phone: "415-555-3345")
-contact.save
+require 'ffaker'
 10.times do 
-contact = Contact.new(first_name: FFaker::Name.first_name, last_name: FFaker::Name.last_name, email: FFaker::Internet.free_email, phone: FFaker::PhoneNumber.short_phone_number)
+contact = Contact.new(
+  first_name: FFaker::Name.first_name, 
+  last_name: FFaker::Name.last_name, 
+  email: FFaker::Internet.free_email, 
+  phone: FFaker::PhoneNumber.short_phone_number
+  )
 contact.save
 end
 

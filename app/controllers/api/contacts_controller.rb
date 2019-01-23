@@ -12,21 +12,26 @@ class Api::ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(
-      first_name: params["first_name"],
-      last_name: params["last_name"],
-      email: params["email"],
-      phone: params["phone"]
+      first_name: params[:first_name],
+      middle_name: params[:middle_name],
+      last_name: params[:last_name],
+      email: params[:email],
+      phone: params[:phone],
+      bio: params[:bio]
       )
     @contact.save
     render 'show.json.jbuilder'
   end
 
   def update
-    @contact = Contact.find_by(id: params["id"])
-    @contact.first_name = params["first_name"] || @contact.first_name
-    @contact.last_name = params["last_name"] || @contact.last_name
-    @contact.email = params["email"] || @contact.email
-    @contact.phone = params["phone"] || @contact.phone
+    @contact = Contact.find_by(id: params[:id])
+
+    @contact.first_name = params[:first_name] || @contact.first_name
+    @contact.middle_name = params[:middle_name] || @contact.middle_name
+    @contact.last_name = params[:last_name] || @contact.last_name
+    @contact.email = params[:email] || @contact.email
+    @contact.phone = params[:phone] || @contact.phone
+     @contact.bio = params[:bio] || @contact.bio
 
     @contact.save
     render 'show.json.jbuilder'
@@ -35,7 +40,6 @@ class Api::ContactsController < ApplicationController
   def destroy
     @contact = Contact.find_by(id: params["id"])
     @contact.destroy
-
     render json: {message: "#{@contact.first_name} #{@contact.last_name} successfully deleted."}
   end
 end
