@@ -1,5 +1,13 @@
 class Contact < ApplicationRecord
 
+  validates :first_name, :last_name, :email, presence: true, length: { minimum: 2 }
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
+  has_many :contact_groups
+  has_many :groups, through: :contact_groups
+  belongs_to :user
+
+
   def full_name
     "#{first_name} #{"last_name"}"
   end
@@ -14,6 +22,10 @@ class Contact < ApplicationRecord
 
   def japanese_country_code
     "+81 #{phone}"
+  end
+
+  def group_names
+    groups.map {|group| group.name}
   end
 
 end
