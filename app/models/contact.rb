@@ -9,7 +9,7 @@ class Contact < ApplicationRecord
 
 
   def full_name
-    "#{first_name} #{"last_name"}"
+    "#{first_name} #{last_name}"
   end
 
   def friendly_updated_at
@@ -20,7 +20,7 @@ class Contact < ApplicationRecord
     created_at.strftime("%A, %d %b %Y %l:%M %p")
   end
 
-  def japanese_country_code
+  def japan_phone
     "+81 #{phone}"
   end
 

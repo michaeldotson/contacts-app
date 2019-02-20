@@ -24,6 +24,7 @@ class ContactsController < ApplicationController
     email: params[:email],
     phone: params[:phone],
     bio: params[:bio],
+    group: params[:group]
     )
 
     @contact.save
@@ -32,6 +33,7 @@ class ContactsController < ApplicationController
 
   def update
     @contact = Contact.find(params[:id])
+    @group = Group.find(params[:id])
 
     @contact.first_name = params[:first_name]
     @contact.middle_name = params[:middle_name]
@@ -39,6 +41,7 @@ class ContactsController < ApplicationController
     @contact.email = params[:email]
     @contact.phone = params[:phone] 
     @contact.bio = params[:bio]
+    @group.name = params[:name]
     # @contact.id = @contact.id
 
     @contact.save
