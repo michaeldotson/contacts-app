@@ -16,16 +16,13 @@ class Api::ContactsController < ApplicationController
   def create
     @contact = Contact.new(
       first_name: params[:first_name],
+      middle_name: params[:middle_name],
       last_name: params[:last_name],
       email: params[:email],
       phone: params[:phone],
-      bio: params[:bio],
+      bio: params[:bio]
       # user_id: current_user.id
     )
-
-    if params[:middle_name]
-      @contact.middle_name = params[:middle_name]
-    end
 
     if @contact.save
       render 'show.json.jbuilder'
